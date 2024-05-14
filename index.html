@@ -1,20 +1,37 @@
 <!DOCTYPE html>
-<html lang="pt-BR">
+<html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Quiz Interativo</title>
-    <link rel="stylesheet" href="styles.css">
+    <title>ByteSaga</title>
+    <link rel="stylesheet" href="style.css">
 </head>
 <body>
-    <div class="quiz-container">
-        <h1>Quiz Interativo</h1>
-        <div id="question"></div>
-        <div id="options"></div>
-        <button id="submitBtn">Próxima Pergunta</button>
-        <p id="score"></p>
-    </div>
-
+    <header>
+        <img class="logo" src="logotec.png" alt="Logo da ByteSaga">
+        <h1>ByteSaga</h1>
+        <nav>
+            <ul>
+                <li><a href="sobre.html">Sobre</a></li>
+                <li><a href="interacoes.html">Interações</a></li>
+            </ul>
+        </nav>
+    </header>
+    <main>
+        <section id="story">
+            <!-- O conteúdo da história será carregado aqui dinamicamente -->
+        </section>
+       
+        <section id="pesquisa-imagem-ia">
+            <h2>Pesquisa de Imagens de IA</h2>
+            <form action="https://designer.microsoft.com/image-creator" method="GET">
+                <input type="submit" value="Pesquisar">
+            </form>
+        </section>
+    </main>
+    <footer>
+        <p>&copy; 2024 ByteSaga. Todos os direitos reservados.</p>
+    </footer>
     <script src="script.js"></script>
 </body>
 </html>
