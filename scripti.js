@@ -1,4 +1,4 @@
-    document.addEventListener("DOMContentLoaded", function() {
+document.addEventListener("DOMContentLoaded", function() {
     const tabuleiro = document.getElementById("tabuleiro");
     const iniciarJogoBtn = document.getElementById("iniciar-jogo");
     const mensagemParabens = document.getElementById("mensagem-parabens");
@@ -27,6 +27,9 @@
     }
 
     function criarCartas() {
+        tabuleiro.innerHTML = ""; // Limpa o tabuleiro antes de criar as cartas
+        cartas = []; // Reseta a lista de cartas
+
         const cartasSimbolos = simbolos.concat(simbolos);
         cartasSimbolos.sort(() => Math.random() - 0.5);
 
@@ -63,6 +66,7 @@
                         mensagemParabens.style.display = "block";
                     }, 500);
                 }
+                bloquearClique = false;
             }, 1000);
         }
     }
@@ -79,8 +83,6 @@
             });
             cartasViradas = [];
         }
-
-        bloquearClique = false;
     }
 
     function jogoConcluido() {
@@ -100,8 +102,6 @@
     }
 
     function reiniciarJogo() {
-        tabuleiro.innerHTML = "";
-        cartas = [];
         cartasViradas = [];
         bloquearClique = false;
         mensagemParabens.style.display = "none";

@@ -1,8 +1,9 @@
-/* Estilos básicos */
 body {
     font-family: Arial, sans-serif;
+    text-align: center;
     margin: 0;
     padding: 0;
+    background-color: #f0f0f0;
 }
 
 header, footer {
@@ -72,26 +73,33 @@ header img.logo {
 main {
     padding: 20px;
 }
+
+
 #tabuleiro {
     display: flex;
     flex-wrap: wrap;
     justify-content: center;
     margin-top: 20px;
+    max-width: 600px;
+    margin: 20px auto;
 }
 
 .carta {
     width: 100px;
     height: 100px;
-    margin: 5px;
-    background-color: #f0f0f0;
+    margin: 10px;
+    background-color: #fff;
+    border: 2px solid #000;
+    display: flex;
+    justify-content: center;
+    align-items: center;
     font-size: 24px;
-    text-align: center;
-    line-height: 100px;
     cursor: pointer;
 }
 
 .carta.virada {
     background-color: #fff;
+    color: #000;
 }
 
 button {
