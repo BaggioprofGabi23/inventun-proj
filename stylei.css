@@ -72,7 +72,6 @@ main {
     padding: 20px;
 }
 
-
 #tabuleiro {
     display: grid;
     grid-template-columns: repeat(6, 100px);
@@ -86,7 +85,6 @@ main {
 .carta {
     width: 100px;
     height: 100px;
-    margin: 10px;
     background-color: #fff;
     border: 2px solid #000;
     display: flex;
