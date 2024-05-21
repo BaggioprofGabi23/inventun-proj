@@ -11,7 +11,7 @@ document.addEventListener("DOMContentLoaded", function() {
     let bloquearClique = false;
     let timer;
     let segundos = 0;
-    let ranking = [];
+    let ranking = loadRanking();
 
     function iniciarCronometro() {
         segundos = 0;
@@ -93,6 +93,7 @@ document.addEventListener("DOMContentLoaded", function() {
     function atualizarRanking(nome, tempo) {
         ranking.push({ nome, tempo });
         ranking.sort((a, b) => a.tempo - b.tempo);
+        saveRanking();
 
         rankingList.innerHTML = "";
         ranking.forEach((recorde, index) => {
@@ -100,6 +101,15 @@ document.addEventListener("DOMContentLoaded", function() {
             item.textContent = `${index + 1}. ${recorde.nome} - ${recorde.tempo} segundos`;
             rankingList.appendChild(item);
         });
+    }
+
+    function saveRanking() {
+        localStorage.setItem("ranking", JSON.stringify(ranking));
+    }
+
+    function loadRanking() {
+        const savedRanking = localStorage.getItem("ranking");
+        return savedRanking ? JSON.parse(savedRanking) : [];
     }
 
     function reiniciarJogo() {
@@ -115,4 +125,11 @@ document.addEventListener("DOMContentLoaded", function() {
     });
 
     criarCartas();
+    // Carregar o ranking inicial
+    ranking.forEach((recorde, index) => {
+        const item = document.createElement("li");
+        item.textContent = `${index + 1}. ${recorde.nome} - ${recorde.tempo} segundos`;
+        rankingList.appendChild(item);
+    });
 });
+
