@@ -79,10 +79,9 @@ main {
     grid-gap: 10px;
     justify-content: center;
     margin-top: 20px;
-    max-width: 600px;
+    max-width: 640px;
     margin: 20px auto;
 }
-
 
 .carta {
     width: 100px;
