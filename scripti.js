@@ -29,24 +29,24 @@ document.addEventListener("DOMContentLoaded", function() {
     function criarCartas() {
         tabuleiro.innerHTML = ""; // Limpa o tabuleiro antes de criar as cartas
         cartas = []; // Reseta a lista de cartas
-
+    
         const cartasSimbolos = simbolos.concat(simbolos);
         cartasSimbolos.sort(() => Math.random() - 0.5);
-
+    
         cartasSimbolos.forEach(simbolo => {
             const carta = document.createElement("div");
             carta.classList.add("carta");
             carta.dataset.simbolo = simbolo;
-            carta.innerText = "?";
+            carta.innerHTML = `<span class="front-face">?</span><span class="back-face">${simbolo}</span>`;
             tabuleiro.appendChild(carta);
             cartas.push(carta);
-
+    
             carta.addEventListener("click", function() {
                 virarCarta(carta);
             });
         });
     }
-
+    
     function virarCarta(carta) {
         if (bloquearClique || carta.classList.contains("virada")) return;
 
