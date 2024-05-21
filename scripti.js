@@ -2,15 +2,29 @@ document.addEventListener("DOMContentLoaded", function() {
     const tabuleiro = document.getElementById("tabuleiro");
     const iniciarJogoBtn = document.getElementById("iniciar-jogo");
     const mensagemParabens = document.getElementById("mensagem-parabens");
-    const cronometro = document.getElementById("cronometro");
-    const ranking = document.getElementById("ranking");
+    const cronometroDisplay = document.getElementById("cronometro");
+    const rankingList = document.getElementById("ranking");
+
     let cartas = [];
-    let tempo = 0;
-    let intervalo;
+    let simbolos = ["🐶", "🐱", "🐭", "🐹", "🐰", "🦊", "🐻", "🐼", "🐨", "🐯", "🦁", "🐮"];
     let cartasViradas = [];
     let bloquearClique = false;
+    let timer;
+    let segundos = 0;
+    let ranking = [];
 
-    const simbolos = ["🐶", "🐱", "🐭", "🐹", "🐰", "🦊", "🐻", "🐼", "🐨", "🐯", "🦁", "🐮"];
+    function iniciarCronometro() {
+        segundos = 0;
+        cronometroDisplay.textContent = `Tempo: ${segundos} segundos`;
+        timer = setInterval(() => {
+            segundos++;
+            cronometroDisplay.textContent = `Tempo: ${segundos} segundos`;
+        }, 1000);
+    }
+
+    function pararCronometro() {
+        clearInterval(timer);
+    }
 
     function criarCartas() {
         const cartasSimbolos = simbolos.concat(simbolos);
@@ -41,7 +55,14 @@ document.addEventListener("DOMContentLoaded", function() {
             bloquearClique = true;
             setTimeout(() => {
                 verificarPar();
-                verificarJogoConcluido();
+                if (jogoConcluido()) {
+                    pararCronometro();
+                    setTimeout(() => {
+                        const nome = prompt("Parabéns! Você concluiu o jogo! Qual é o seu nome?");
+                        atualizarRanking(nome, segundos);
+                        mensagemParabens.style.display = "block";
+                    }, 500);
+                }
             }, 1000);
         }
     }
@@ -62,12 +83,20 @@ document.addEventListener("DOMContentLoaded", function() {
         bloquearClique = false;
     }
 
-    function verificarJogoConcluido() {
-        if (cartas.every(carta => carta.classList.contains("virada"))) {
-            clearInterval(intervalo);
-            mensagemParabens.style.display = "block";
-            atualizarRanking(tempo);
-        }
+    function jogoConcluido() {
+        return cartas.every(carta => carta.classList.contains("virada"));
+    }
+
+    function atualizarRanking(nome, tempo) {
+        ranking.push({ nome, tempo });
+        ranking.sort((a, b) => a.tempo - b.tempo);
+
+        rankingList.innerHTML = "";
+        ranking.forEach((recorde, index) => {
+            const item = document.createElement("li");
+            item.textContent = `${index + 1}. ${recorde.nome} - ${recorde.tempo} segundos`;
+            rankingList.appendChild(item);
+        });
     }
 
     function reiniciarJogo() {
@@ -76,24 +105,13 @@ document.addEventListener("DOMContentLoaded", function() {
         cartasViradas = [];
         bloquearClique = false;
         mensagemParabens.style.display = "none";
-        tempo = 0;
-        cronometro.innerText = `Tempo: ${tempo} segundos`;
-        clearInterval(intervalo);
-        intervalo = setInterval(() => {
-            tempo++;
-            cronometro.innerText = `Tempo: ${tempo} segundos`;
-        }, 1000);
-
+        iniciarCronometro();
         criarCartas();
     }
 
-    function atualizarRanking(tempo) {
-        const recorde = document.createElement("li");
-        recorde.innerText = `${tempo} segundos`;
-        ranking.appendChild(recorde);
-    }
-
-    iniciarJogoBtn.addEventListener("click", reiniciarJogo);
+    iniciarJogoBtn.addEventListener("click", function() {
+        reiniciarJogo();
+    });
 
     criarCartas();
 });
