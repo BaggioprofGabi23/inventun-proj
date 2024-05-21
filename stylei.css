@@ -74,13 +74,15 @@ main {
 
 
 #tabuleiro {
-    display: flex;
-    flex-wrap: wrap;
+    display: grid;
+    grid-template-columns: repeat(5, 100px);
+    grid-gap: 10px;
     justify-content: center;
     margin-top: 20px;
     max-width: 600px;
     margin: 20px auto;
 }
+
 
 .carta {
     width: 100px;
