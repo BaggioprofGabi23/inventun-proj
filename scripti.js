@@ -1,10 +1,10 @@
-    document.addEventListener("DOMContentLoaded", function() {
+document.addEventListener("DOMContentLoaded", function() {
     const tabuleiro = document.getElementById("tabuleiro");
     const iniciarJogoBtn = document.getElementById("iniciar-jogo");
     const mensagemParabens = document.getElementById("mensagem-parabens");
     const cronometroDisplay = document.getElementById("cronometro");
     const rankingList = document.getElementById("ranking");
-    
+
     let cartas = [];
     let simbolos = ["🐶", "🐱", "🐭", "🐹", "🐰", "🦊", "🐻", "🐼", "🐨", "🐯", "🦁", "🐮"];
     let cartasViradas = [];
@@ -12,7 +12,7 @@
     let timer;
     let segundos = 0;
     let ranking = [];
-    
+
     function iniciarCronometro() {
         segundos = 0;
         cronometroDisplay.textContent = `Tempo: ${segundos} segundos`;
