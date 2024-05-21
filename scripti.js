@@ -1,4 +1,4 @@
-document.addEventListener("DOMContentLoaded", function() {
+    document.addEventListener("DOMContentLoaded", function() {
     const tabuleiro = document.getElementById("tabuleiro");
     const iniciarJogoBtn = document.getElementById("iniciar-jogo");
     const mensagemParabens = document.getElementById("mensagem-parabens");
