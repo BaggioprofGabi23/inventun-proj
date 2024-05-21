@@ -1,10 +1,10 @@
-document.addEventListener("DOMContentLoaded", function() {
+    document.addEventListener("DOMContentLoaded", function() {
     const tabuleiro = document.getElementById("tabuleiro");
     const iniciarJogoBtn = document.getElementById("iniciar-jogo");
     const mensagemParabens = document.getElementById("mensagem-parabens");
     const cronometroDisplay = document.getElementById("cronometro");
     const rankingList = document.getElementById("ranking");
-
+    
     let cartas = [];
     let simbolos = ["🐶", "🐱", "🐭", "🐹", "🐰", "🦊", "🐻", "🐼", "🐨", "🐯", "🦁", "🐮"];
     let cartasViradas = [];
@@ -12,7 +12,7 @@ document.addEventListener("DOMContentLoaded", function() {
     let timer;
     let segundos = 0;
     let ranking = [];
-
+    
     function iniciarCronometro() {
         segundos = 0;
         cronometroDisplay.textContent = `Tempo: ${segundos} segundos`;
@@ -27,6 +27,8 @@ document.addEventListener("DOMContentLoaded", function() {
     }
 
     function criarCartas() {
+        cartas = [];
+        tabuleiro.innerHTML = ""; // Limpa o tabuleiro antes de criar as cartas
         const cartasSimbolos = simbolos.concat(simbolos);
         cartasSimbolos.sort(() => Math.random() - 0.5);
 
@@ -59,10 +61,13 @@ document.addEventListener("DOMContentLoaded", function() {
                     pararCronometro();
                     setTimeout(() => {
                         const nome = prompt("Parabéns! Você concluiu o jogo! Qual é o seu nome?");
-                        atualizarRanking(nome, segundos);
+                        if (nome) {
+                            atualizarRanking(nome, segundos);
+                        }
                         mensagemParabens.style.display = "block";
                     }, 500);
                 }
+                bloquearClique = false;
             }, 1000);
         }
     }
@@ -79,8 +84,6 @@ document.addEventListener("DOMContentLoaded", function() {
             });
             cartasViradas = [];
         }
-
-        bloquearClique = false;
     }
 
     function jogoConcluido() {
@@ -100,8 +103,6 @@ document.addEventListener("DOMContentLoaded", function() {
     }
 
     function reiniciarJogo() {
-        tabuleiro.innerHTML = "";
-        cartas = [];
         cartasViradas = [];
         bloquearClique = false;
         mensagemParabens.style.display = "none";
