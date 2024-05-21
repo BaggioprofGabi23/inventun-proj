@@ -27,7 +27,6 @@ document.addEventListener("DOMContentLoaded", function() {
     }
 
     function criarCartas() {
-        cartas = [];
         const cartasSimbolos = simbolos.concat(simbolos);
         cartasSimbolos.sort(() => Math.random() - 0.5);
 
@@ -60,13 +59,10 @@ document.addEventListener("DOMContentLoaded", function() {
                     pararCronometro();
                     setTimeout(() => {
                         const nome = prompt("Parabéns! Você concluiu o jogo! Qual é o seu nome?");
-                        if (nome) {
-                            atualizarRanking(nome, segundos);
-                        }
+                        atualizarRanking(nome, segundos);
                         mensagemParabens.style.display = "block";
                     }, 500);
                 }
-                bloquearClique = false;
             }, 1000);
         }
     }
@@ -83,6 +79,8 @@ document.addEventListener("DOMContentLoaded", function() {
             });
             cartasViradas = [];
         }
+
+        bloquearClique = false;
     }
 
     function jogoConcluido() {
@@ -103,6 +101,7 @@ document.addEventListener("DOMContentLoaded", function() {
 
     function reiniciarJogo() {
         tabuleiro.innerHTML = "";
+        cartas = [];
         cartasViradas = [];
         bloquearClique = false;
         mensagemParabens.style.display = "none";
