@@ -27,26 +27,24 @@ document.addEventListener("DOMContentLoaded", function() {
     }
 
     function criarCartas() {
-        tabuleiro.innerHTML = ""; // Limpa o tabuleiro antes de criar as cartas
-        cartas = []; // Reseta a lista de cartas
-    
+        cartas = [];
         const cartasSimbolos = simbolos.concat(simbolos);
         cartasSimbolos.sort(() => Math.random() - 0.5);
-    
+
         cartasSimbolos.forEach(simbolo => {
             const carta = document.createElement("div");
             carta.classList.add("carta");
             carta.dataset.simbolo = simbolo;
-            carta.innerHTML = `<span class="front-face">?</span><span class="back-face">${simbolo}</span>`;
+            carta.innerText = "?";
             tabuleiro.appendChild(carta);
             cartas.push(carta);
-    
+
             carta.addEventListener("click", function() {
                 virarCarta(carta);
             });
         });
     }
-    
+
     function virarCarta(carta) {
         if (bloquearClique || carta.classList.contains("virada")) return;
 
@@ -62,7 +60,9 @@ document.addEventListener("DOMContentLoaded", function() {
                     pararCronometro();
                     setTimeout(() => {
                         const nome = prompt("Parabéns! Você concluiu o jogo! Qual é o seu nome?");
-                        atualizarRanking(nome, segundos);
+                        if (nome) {
+                            atualizarRanking(nome, segundos);
+                        }
                         mensagemParabens.style.display = "block";
                     }, 500);
                 }
@@ -102,6 +102,7 @@ document.addEventListener("DOMContentLoaded", function() {
     }
 
     function reiniciarJogo() {
+        tabuleiro.innerHTML = "";
         cartasViradas = [];
         bloquearClique = false;
         mensagemParabens.style.display = "none";
