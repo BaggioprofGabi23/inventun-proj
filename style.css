@@ -1,18 +1,22 @@
 /* Estilos básicos */
 body {
     font-family: Arial, sans-serif;
+    background-color: #f4f4f4;
     margin: 0;
     padding: 0;
+    line-height: 1.6;
 }
 
 header, footer {
     background-color: #333;
     color: #fff;
-    padding: 10px;
+    padding: 20px;
     text-align: center;
+    overflow: auto;
+
 }
 
-/* Estilos para o cabeçalho */
+/* Estilos para o cabeçalho 
 header {
     background-color: #333;
     color: #fff;
