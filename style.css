@@ -13,7 +13,6 @@ header, footer{
     padding: 10px;
     text-align: center;
     overflow: auto;
-
 }
 
 /* Estilos para o cabeçalho */
@@ -30,7 +29,7 @@ h1 {
     font-weight: bold;
     text-transform: uppercase;
     margin-bottom: 20px;
-    font-family: 'Dancing Script', cursive;  /* Aplica a fonte cursiva ao título */
+    font-family: 'Architects Daughter', cursive;  /* Aplica a fonte cursiva ao título */
 }
 
 
